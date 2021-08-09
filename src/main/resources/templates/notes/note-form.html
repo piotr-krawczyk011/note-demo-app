@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+    <title>Save Note</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h3>Note Directory</h3>
+        <hr>
+
+        <p class="h4 mb-4">Save User</p>
+
+        <form action="#" th:action="@{/notes/save}"
+                         th:object="${note}" method="POST">
+
+            <input type="hidden" th:field="*{id}" />
+
+            <input type="text" th:field="*{title}"
+                    class="form-control mb-4 col-4" placeholder="Title">
+
+            <input type="text" th:field="*{content}"
+                   class="form-control mb-4 col-4" placeholder="Content">
+
+            <div th:if="${#fields.hasAnyErrors()}">
+                <ul>
+                    <li th:each="err : ${#fields.allErrors()}" th:text="${err}" class="error"/>
+                </ul>
+            </div>
+
+            <button type="submit" class="btn btn-info col-2">Save</button>
+        </form>
+
+        <hr>
+        <a th:href="@{/notes/list}">Back to Notes List</a>
+
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
