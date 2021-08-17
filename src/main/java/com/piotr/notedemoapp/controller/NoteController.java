@@ -47,7 +47,7 @@ public class NoteController {
     }
 
     @PostMapping("/save")
-    public String saveUser(@ModelAttribute("note") @Valid Note theNote, BindingResult result) {
+    public String saveNote(@ModelAttribute("note") @Valid Note theNote, BindingResult result) {
         if (result.hasErrors()) {
             return "notes/note-form";
         }
@@ -59,7 +59,7 @@ public class NoteController {
 
 
     @GetMapping("/delete")
-    public String deleteUser(@RequestParam("userId") int theId) {
+    public String deleteNote(@RequestParam("noteId") int theId) {
         noteService.deleteById(theId);
 
         return "redirect:/notes/list";
